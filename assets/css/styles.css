@@ -49,6 +49,27 @@ ul {
   }
 }
 
+@media only screen and (max-width: 768px) {
+  /* add your responsive styles here */
+  .bd-grid {
+    max-width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .l-header {
+    position: static;
+  }
+  .navbar {
+    display: flex;
+    flex-direction: column;
+  }
+  .navbar-menu {
+    display: none;
+  }
+  .navbar-burger {
+    display: block;
+  }
+}
+
 /*===== BASE =====*/
 *, ::before, ::after {
   box-sizing: border-box;
@@ -505,13 +526,13 @@ x {
   transform: translate(0, 40px);
 }
 .card-1 .card-img, .card-1 .card-img-hovered {
-  background-image: var(--card-img-hovered-overlay), url(/assets/img/df22_img.png);
+  background-image: var(--card-img-hovered-overlay), url(../../assets/img/df22_img.png);
 }
 .card-2 .card-img, .card-2 .card-img-hovered {
-  background-image: var(--card-img-hovered-overlay), url(/assets/img/df21_img.jpg);
+  background-image: var(--card-img-hovered-overlay), url(../../assets/img/df21_img.jpg);
 }
 .card-3 .card-img, .card-3 .card-img-hovered {
-  background-image: var(--card-img-hovered-overlay), url(/assets/img/caadria_21.jpg);
+  background-image: var(--card-img-hovered-overlay), url(../../assets/img/caadria_21.jpg);
 }
 
 /* ===== FOOTER =====*/
