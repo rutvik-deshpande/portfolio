@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/assets/css/styles.css">
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <title>Rutvik Deshpande</title>
+    </head>
+    <body>
+
+<header class="l-header">
+    <nav class="nav bd-grid">
+        <div>
+            <a href="#" class="nav__logo">Rutvik Deshpande</a>
+        </div>
+        <div id="post-meta">
+            <div id="post-title">
+                Daylighting AI
+            </div>
+    </nav>
+</header>
+
+<body class="post-body">
+
+    <section class="post-hero">
+        <div class="hero-img">
+            <img src="/assets/img/11.png">
+        </div>
+    </section>
+
+    <section class="home2 bd-grid" id="about">
+        <div class="row">
+        <div class="post-content">
+            <a class="card-tag">DBF R&D</a>
+
+            <div id="box1">
+              <p>📄 Read more about the project in the paper published at the CAADRIA 22 conference, <i><b><a href="http://papers.cumincad.org/data/works/att/caadria2022_152.pdf">here</a></b></i></p>
+            </div>
+
+            <p>Simulations are the go-to solution for building performance analysis, but there are many problems associated with that, namely domain-level understanding of the simulation mathematical models, tremendous computational resources and these are extremely time-intensive. This conflicts with the early-stage design process, where designers perform several rounds of design iteration and refinement.</p>
+
+<h3>Project Focus 🧿</h3>
+<ol type="1">
+<li>One click daylight analysis with <b><i>Synthetic Machine Learning</i></b>, for faster and more interpretable results</li>
+<li>Automatic and distributed data generation using parametric scripts, simulation tools and GPU based render farms</li>
+<li>Developement of a web service to perform daylight analysis, with realtime & informed design recommendations</li></ol>
+
+<div class="post-img-wrapper">
+    <div class="post-full-img-subwrapper">
+      <img class="post-full-img" src="/assets/img/daylighting.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">An overview of Synthetic Machine Learning system and summary of applied technologies</a></b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h3>Overview 🔭</h3>
+<p>We developed a system, <b><i>Synthetic Machine Learning</i></b>, to predict daylight simulation results in realtime. The system consists of four parts: <br>[1] a parametric model; generating synthetic data based on environmental simulation<br>[2]
+    a ML model, trained on the generated synthetic data, to predict building DA and sDA<br>[3] a web service containing a pre-trained ML model<br>[4] a web-based user interface that allows the interaction with the ML mechanics.</p>
+
+    <div class="post-img-wrapper">
+        <div class="post-full-img-subwrapper">
+          <img class="post-full-img" src="/assets/img/day-light.png">
+          <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+            <div class="img-caption">The framework of Synthetic Machine Learning system for DA and sDA prediction
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+<h3>Data Generation ⏩</h3>
+<p>We developed the automatic sythetic data generation pipeline, with help of Rhino 6, Grasshopper3D and LadyBug tools. 
+  The parametric model automated the generation of dynamic daylight simulations data for different locations and design configurations. 
+  To cut the simulation time, we used <a href="https://nljones.github.io/Accelerad/">Accelerad</a>, a daylighting simulation package that makes use of GPU-compute architecture to accelerate simulation time</p>
+
+<h3>Model Training 📈</h3>
+<p>For model training, 3 different ML model were tested, Linear Regression, Random Forest Regression, and Artificial Neural Networks (ANN). 
+  ANNs were chosen because of its accuracy and performance with outliers. The data was trained using Tensorflow with optimized parameter tuning. 
+  The input parameters for model training included Windo-Wall-Ratio for each elevation, height, width, length of rotation of the spatial module, 
+  latitude and longitude of the city. The data was trained with 6 to 10 Neural Network layers with 100.000+ total trainable parameters. 
+  We achieved a training loss of Mean Absolute Error 
+  (MAE) of 0.009 and Mean Squared Error (MSE) of 0.0002. The performance kept on improving with more diverse data.</p>
+
+<h3>Web Deployment (MLOps) 💻</h3>
+<p>The deployment was the most challenging step, as we had no knowledge on how to connect the ML models to front-end. 
+  The model was first tested in Rhino3D Environment with the help of <a href="https://developer.rhino3d.com/guides/compute/hops-component/">Hops component</a>. After testing various workflows, 
+  cloud computing service, Google Cloud was used for deployment. The ML models were converted to cloud functions and 
+  directly connected to the DBF platform through API.</p>
+
+<h3>UI/UX 🖊️</h3>
+<p>The user interface was designed to be as simple and intuitive as possible. The user can perform analysis on the buildings generated by the DBF platform. The prediction is presented as a clear 3D visualization and contains information on building energy efficiency. The colour-coded report presents the estimated DA and sDA values, for selected WWR ratios for each facade of the 3D building.</p>
+
+<div class="post-img-wrapper">
+    <div class="post-full-img-subwrapper">
+      <img class="post-full-img" src="/assets/img/ui-daylighting.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">DBF building DA prediction system is based on ML and dramatically reduces daylight analysis time compared to traditional simulation-based approaches.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Next Steps 💡</h3>
+    <p>In this project, we used tabular data and predicted values, but we expanded it further and experimented with 2D generation of daylight simulation results as heatmaps using 2D CNN algorithm. This method can help in predicting more granular daylight results. It was deployed to predict Daylight Autonomy and Spatial Daylight Autonomy, based on size of room and window-wall ratios.</p>
+    
+    <div class="post-img-wrapper">
+      <div class="post-full-img-subwrapper">
+        <img class="post-full-img" src="/assets/img/da.gif">
+        <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+          <div class="img-caption">Predicting the DA based on input parameters. The resulting heatmap has values varying from 0-100%.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-img-wrapper">
+      <div class="post-full-img-subwrapper">
+        <img class="post-full-img" src="/assets/img/sda.gif">
+        <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+          <div class="img-caption">Predicting the sDA based on input parameters. The results of sDA are easier to interpret, as there are only two values, pass or fail.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+<footer class="footer"> 
+  <p class="footer__title">Rutvik Deshpande</p>
+  <div class="footer__social">
+    <a href="https://www.linkedin.com/in/rutvik-deshpande-11134719b/" class="footer__icon"><i class='bx bxl-linkedin' ></i></a>
+    <a href="https://medium.com/@rutvik.desh" class="footer__icon"><i class='bx bxl-medium' ></i></a>
+    <a href="https://twitter.com/rutvik_desh" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
+    <a href="https://github.com/rutvik-deshpande" class="footer__icon"><i class='bx bxl-github' ></i></a>
+    <a href="mailto: rutvik.deshpande@outlook.com" class="footer__icon"><i class='bx bx-envelope' ></i></a>
+    
+</div>
+</footer>
+
+</body>
+
+</html>

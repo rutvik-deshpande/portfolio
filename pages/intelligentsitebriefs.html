@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/assets/css/styles.css">
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <title>Rutvik Deshpande</title>
+    </head>
+    <body>
+
+<header class="l-header">
+    <nav class="nav bd-grid">
+        <div>
+            <a href="#" class="nav__logo">Rutvik Deshpande</a>
+        </div>
+        <div id="post-meta">
+            <div id="post-title">
+              Intelligent Site Briefs
+            </div>
+    </nav>
+</header>
+
+<body class="post-body">
+
+    <section class="post-hero">
+        <div class="hero-img">
+            <img src="/assets/img/11.png">
+        </div>
+    </section>
+
+    <section class="home2 bd-grid" id="about">
+        <div class="row">
+        <div class="post-content">
+            <a class="card-tag">DBF R&D</a>
+
+            <h2>Can we create a prediction system for buildings based on location data?</h2>
+            <p><i>With Sayjel Vijay Patel and <u><a href="https://scholar.google.com/citations?user=1cRUzgEAAAAJ&hl=en">Kam-Ming Mark Tam</a></u></i></p>
+            
+
+<h3>Project Focus 🧿</h3>
+<p>In this project we explored how to apply <i>Machine Learning</i> to augment the architectural briefing process. Anyone is able to access troves of free data describing building type, tenants, property values, and energy use by location. With ML it is possible to identify hidden relationships between these datasets to predict the 
+  requirements of a new building at a specific location. We tried to predict the</p>
+
+  <ol type="i">
+    <li><i><b>Building Attributes</b></i> using <i><b>Random Forest Classifiers</b></i></li>
+    <li><i><b>Building Footprint</b></i> using <i><b>Conditional Generative Adversarial Nets (cGANs)</b></i></li>
+  </ol>  
+
+
+
+
+<div class="post-img-wrapper">
+    <div class="post-full-img-subwrapper">
+      <img class="post-full-img" src="/assets/img/workflow-briefs.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">How to predict design attributes by location? A complete workflow</a></b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h3>Data Pre-processing 🗃️</h3>
+<p>This was the most important step in this project. We used OpenStreetMaps (OSM); a collaborative, free, 
+  global mapping API that provides 2D and 3D geodata about different cities in JSON file format. OSM is a 'structured dataset', 
+  meaning textual and numeric elements such as coordinates, street names, postal codes, building geometry, and building attributes are 
+  organized in table format. 
+  The data was cleaned and preprocessed according to the need of the ML models, which is given below.</p>
+
+
+  <h4>Random Forest Classifier</h4>
+  <p>The OSM data has a variety of features and finding the right and useful features was a tough task. 
+    Though the structured data made it easier to train the supervised ML model, random forests classifier. 
+    The target variable for this experiment was Building Attribute Type (ie. building use). To train our ML model, we used the 
+    following features of the OSM data to predict our target variable for a new development site; <i>Building perimeter, Number of neighbor 
+      buildings, Postal code, Street name, Site area, Site perimeter, Number of buildings in 50m, 100m, and 200m radius.</i> To learn more about 
+      this approach check out our Towards Data Science <b><a href="https://medium.com/towards-data-science/intelligent-architectural-briefs-with-random-forest-and-openstreetmaps-d577fc01f3ce">article</a></b>.</p>
+
+      <h4>cGANs</h4>
+      <p>The feature engineering was done using Shapely, Python package for manipulation and analysis of planar geometric objects and pySAL 
+        (Python Spatial Analysis Library), for geospatial analysis and creating new urban features. This structured data was then converted to 
+        Geo-Dataframe using geopandas, for plotting the building footprints, and contextual data like neighbors, streets and building sites.</p>
+    
+        <div class="post-img-wrapper">
+          <div class="post-full-img-subwrapper">
+            <img class="post-full-img" src="/assets/img/data.png">
+            <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+              <div class="img-caption">One set of input and output images used for model training
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Model Architecture (cGANs) 🧩</h3>
+        <p>The input for training the ML model, cGAN was the images of the above mentioned features, created using Matplotlib, a popular python data visualization module. After analysis of initial results, the data was filtered and segregated into various categories based on similarities like, geometry, address, programs, and cities, for better performance along with optimizing the cGAN model.</p>
+
+    <div class="post-img-wrapper">
+        <div class="post-full-img-subwrapper">
+          <img class="post-full-img" src="/assets/img/main_cgan.png">
+          <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+            <div class="img-caption">The cGAN model architecture used to predict the building footprint based on site context
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+<h3>Results 🧪</h3>
+<h4>Random Forest Classifier</h4>
+<p>The random forest classifier model achieved a prediction accuracy of <i>61.1 %</i>. 
+  The accuracy was low in this example because we use only 100 data points in our training data.</p>
+
+  <h4>cGANs</h4>
+  <div class="post-img-wrapper">
+    <div class="post-full-img-subwrapper">
+      <img class="post-full-img" src="/assets/img/results2.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">Results of cGAN without considering site shape as an input
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-img-wrapper">
+    <div class="post-full-img-subwrapper">
+      <img class="post-full-img" src="/assets/img/gan_results.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">The results from the cGAN model, for narrow shaped small site in New York City
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>
+<footer class="footer"> 
+  <p class="footer__title">Rutvik Deshpande</p>
+  <div class="footer__social">
+    <a href="https://www.linkedin.com/in/rutvik-deshpande-11134719b/" class="footer__icon"><i class='bx bxl-linkedin' ></i></a>
+    <a href="https://medium.com/@rutvik.desh" class="footer__icon"><i class='bx bxl-medium' ></i></a>
+    <a href="https://twitter.com/rutvik_desh" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
+    <a href="https://github.com/rutvik-deshpande" class="footer__icon"><i class='bx bxl-github' ></i></a>
+    <a href="mailto: rutvik.deshpande@outlook.com" class="footer__icon"><i class='bx bx-envelope' ></i></a>
+    
+</div>
+</footer>
+
+</body>
+
+</html>

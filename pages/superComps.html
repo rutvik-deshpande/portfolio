@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/assets/css/styles.css">
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <title>Rutvik Deshpande</title>
+    </head>
+    <body>
+
+<header class="l-header">
+    <nav class="nav bd-grid">
+        <div>
+            <a href="#" class="nav__logo">Rutvik Deshpande</a>
+        </div>
+        <div id="post-meta">
+            <div id="post-title">
+              Supercomputing Net-Zero Structures
+            </div>
+    </nav>
+</header>
+
+<body class="post-body">
+
+    <section class="post-hero">
+        <div class="hero-img">
+            <img src="/assets/img/11.png">
+        </div>
+    </section>
+
+    <section class="home2 bd-grid" id="about">
+        <div class="row">
+        <div class="post-content">
+
+            <div id="box1">
+              <p>📄 Read more about the project in the whitepaper titled, Synthetic Structural Generation for Early-Stage Carbon Evaluation, <i><b><a href="researchgate.net/publication/365665716_Synthetic_Structural_Generation_for_Early-Stage_Carbon_Evaluation">here</a></b></i></p>
+              <p>🏆 This project won <i><u><a href="https://www.nscc.sg/wp-content/uploads/2022/09/NewsBytesFULL-Sep2022_Final.pdf">second runners-up prize</a></u></i> at the <b><a href="https://www.padangecosystem.com/en/page/hpcic-2022-en">High-Performance Computing Innovation Challenge (HPCIC)</a></b> organized by <b>National Supercomputing Center (NSCC)</b></p>
+            </div>
+            <br></br>
+
+            <h3><i>How to accelerate the transition to carbon absorbing structures?</h3></i>
+
+            <p>The project, developed by the DBF R&D Team in collaboration with Karamba 3D, was created for the High-Performance Computing Innovation Challenge for the Environment organized by National Supercomputing Center (NSCC). Our value proposition was <i>Synthetic Data for the Building Industry</i>, which aims to address the time-intensive nature of structural design in the building industry.</p>
+
+            <p>As a finalist in the <i>HPCIC</i> our team was given the opportunity to use the <i>Aspire 1</i> supercomputer at the NSCC Singapore for a period of two months starting in August 2022. During this time, we worked closely with Karamba3D and industry experts to develop a synthetic data generation pipeline that could be used to facilitate the adoption of more sustainable building materials and reimagine early-stage building design. We explored new workflows and utilized advanced technology to create an automated pipeline for generating synthetic data.</p> 
+            <div height="0" width="100%" style="position: relative; padding-bottom: 54.57%">
+              <iframe width="100%" height="100%" style="top: 0; left: 0; position: absolute" src="https://www.youtube.com/embed/OuJpxm0P7EU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+
+              <br></br>
+
+<h3>Project Focus 🧿</h3>
+<p>In the early design stages, strict deadlines often lead engineers to rely on familiar, but potentially environmentally harmful, materials like steel and concrete. Our goal was to facilitate the adoption of more sustainable materials like mass timber by reimagining the early-stage structural design process. To achieve this, we have developed a novel data-driven process that uses synthetic data generation and machine learning predictions to inform the creation of a user-friendly design tool. This tool allows project stakeholders to easily generate and compare various structural design options and scenarios in terms of cost, embodied carbon, and sequestered carbon.</p>
+
+<div class="post-img-wrapper">
+    <div class="post-full-img-subwrapper">
+      <img class="post-full-img" src="/assets/img/workflow_supercomps.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">An overview of the novel data-driven structural design process which leverages synthetic data generation, and machine learning</a></b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h3>Methodology 📝</h3>
+<p>Our data-driven tool combines four features to address the limitations of existing solutions: 
+  [1] The first feature is user inputs, which include building massing, orthogonal column spans, and structural type. 
+  [2] The second feature is a machine learning (ML) model that uses an automated data-generation process to combine different structural grids, materials, and floor systems for various building massings to create an ML dataset that relates structural inputs to the weight of the frame
+  [3] The third feature is the estimation of cost, embodied carbon, and sequestered carbon, which are calculated using the structural properties predicted by the ML pipeline.
+  [4] The fourth feature is design space exploration, which allows the user to see the impact of each input on design criteria by changing the inputs. 
+This tool allows us to quickly generate and compare various structural design options and scenarios in terms of cost, embodied carbon, and sequestered carbon.</p>
+
+      
+      <h4>Massing Generation</h4>
+<p>We developed a robust generative design algorithm internally at DBF to generate massing solutions. 
+  These solutions were then stored in the <b><i>AWS Cloud</b></i> using a <b><i>Rest-API</b></i>. We used JSON files to store the generated solutions in an <b><i>AWS S3 bucket</b></i> and 
+  collected references to these solutions in a cloud-based database. The process of automating the synthetic data generation, indexing, 
+  and storing these solutions on the cloud was decoupled from the DBF platform and made available directly through an API. This allows for
+   efficient and convenient access to the generated data.</p>
+
+   <div class="post-img-wrapper">
+    <div class="post-full-img-subwrapper">
+      <img class="post-full-img" src="/assets/img/workflow_massing.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">The 3 steps of synthetic data generation pipeline 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4>Structural Generation</h4>
+<p>We used massing generated by a volume generation algorithm as input for structural system generation. This massing provided information such as the total volume of the building, floor areas and shapes, number of floors, and inter-storey height. We then automatically generated the structural system, which includes beams, columns, slabs, cores, and a lateral load-resisting system (LLRS) using JS code based on two orthogonal spans (ranging from 3 to 10 meters) and the chosen structural type. For our initial experiment, we used 12 massing designs as a basis and generated structures with 64 different span combinations and 8 different numbers of floors for each massing.</p>
+
+<p>This resulted in a total of 512 structural designs for each massing and 6144 structural solutions for each structural type, for a total of 24,576 generated structures. We used Karamba3D software to analyze all of these buildings and construct a dataset for machine learning training.</p>
+
+<h4>FEA Analysis and Synthetic Data</h4>
+<p>We used Karamba3D parametric finite element analysis software to analyze the generated structures with fixed applied loads including gravity (slab weight + 1 kN/m2 dead load + 4 kN/m2 live load) and wind based on the maximum wind speed in Vienna, Austria. In addition to structural analysis, Karamba3D also performed structural design by optimizing the cross-sections of the beams, columns, and lateral load-resisting system (LLRS) elements. The optimized structures were then designed using the cross-sections and material grades. The weight of the optimized structure was calculated for each generated structural system to create a dataset for machine learning model training.</p>
+
+<h3>Web Deployment (MLOps) 💻</h3>
+<p>The deployment was the most challenging step, as we had no knowledge on how to connect the ML models to front-end. 
+  The model was first tested in Rhino3D Environment with the help of <a href="https://developer.rhino3d.com/guides/compute/hops-component/">Hops component</a>. After testing various workflows, 
+  cloud computing service, Google Cloud was used for deployment. The ML models were converted to cloud functions and 
+  directly connected to the DBF platform through API.</p>
+
+<h3>UI/UX 🖊️</h3>
+<p>The user interface was designed to be as simple and intuitive as possible. The user can perform analysis on the buildings generated by the DBF platform. The prediction is presented as a clear 3D visualization and contains information on building energy efficiency. The colour-coded report presents the estimated DA and sDA values, for selected WWR ratios for each facade of the 3D building.</p>
+
+<div class="post-img-wrapper">
+    <div class="post-full-img-subwrapper">
+      <img class="post-full-img" src="/assets/img/ui-daylighting.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">DBF building DA prediction system is based on ML and dramatically reduces daylight analysis time compared to traditional simulation-based approaches.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Next Steps 💡</h3>
+    <p>In this project, we used tabular data and predicted values, but we expanded it further and experimented with 2D generation of daylight simulation results as heatmaps using 2D CNN algorithm. This method can help in predicting more granular daylight results. It was deployed to predict Daylight Autonomy and Spatial Daylight Autonomy, based on size of room and window-wall ratios.</p>
+    
+    <div class="post-img-wrapper">
+      <div class="post-full-img-subwrapper">
+        <img class="post-full-img" src="/assets/img/da.gif">
+        <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+          <div class="img-caption">Predicting the DA based on input parameters. The resulting heatmap has values varying from 0-100%.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-img-wrapper">
+      <div class="post-full-img-subwrapper">
+        <img class="post-full-img" src="/assets/img/sda.gif">
+        <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+          <div class="img-caption">Predicting the sDA based on input parameters. The results of sDA are easier to interpret, as there are only two values, pass or fail.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+<footer class="footer"> 
+  <p class="footer__title">Rutvik Deshpande</p>
+  <div class="footer__social">
+    <a href="https://www.linkedin.com/in/rutvik-deshpande-11134719b/" class="footer__icon"><i class='bx bxl-linkedin' ></i></a>
+    <a href="https://medium.com/@rutvik.desh" class="footer__icon"><i class='bx bxl-medium' ></i></a>
+    <a href="https://twitter.com/rutvik_desh" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
+    <a href="https://github.com/rutvik-deshpande" class="footer__icon"><i class='bx bxl-github' ></i></a>
+    <a href="mailto: rutvik.deshpande@outlook.com" class="footer__icon"><i class='bx bx-envelope' ></i></a>
+    
+</div>
+</footer>
+
+</body>
+
+</html>
