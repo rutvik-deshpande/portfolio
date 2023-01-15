@@ -68,6 +68,16 @@ ul {
   .navbar-burger {
     display: block;
   }
+  .home {
+    padding: 10rem 0 2rem;
+  }
+  .home__img {
+    width: 550px;
+  }
+
+  .home2 {
+    padding: 2rem 0 2rem;
+  }
 }
 
 /*===== BASE =====*/
@@ -270,6 +280,17 @@ x {
   flex-direction: row;
 }
 
+@media only screen and (max-width: 768px) {
+  .row {
+    display: block;
+  }
+  .column1,
+  .column2 {
+    width: 100%;
+  }
+}
+
+
 
 .home__data {
   align-self: center;
@@ -435,7 +456,7 @@ x {
 
 /* ===== PUBLICATIONS =====*/
 .pubs__container {
-  row-gap: 0rem;
+  row-gap: 2rem;
 }
 
 .pub__name {
