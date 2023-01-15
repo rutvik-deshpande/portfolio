@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en"> 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+        <title>Rutvik Deshpande</title>
+    </head>
+    <body>
+
+<header class="l-header">
+    <nav class="nav bd-grid">
+        <div>
+            <a href="#" class="nav__logo">Rutvik Deshpande</a>
+        </div>
+        <div id="post-meta">
+            <div id="post-title">
+              Supercomputing Net-Zero Structures
+            </div>
+    </nav>
+</header>
+
+<body class="post-body">
+
+    <section class="post-hero">
+        <div class="hero-img">
+            <img src="../assets/img/header_super.png">
+        </div>
+    </section>
+
+    <section class="home2 bd-grid" id="about">
+        <div class="row">
+        <div class="post-content">
+
+            <div id="box1">
+              <p>📄 Read more about the project in the whitepaper titled, Synthetic Structural Generation for Early-Stage Carbon Evaluation, <i><b><a href="researchgate.net/publication/365665716_Synthetic_Structural_Generation_for_Early-Stage_Carbon_Evaluation">here</a></b></i></p>
+              <p>🏆 This project won the <i><u><a href="https://www.nscc.sg/wp-content/uploads/2022/09/NewsBytesFULL-Sep2022_Final.pdf">second runners-up prize</a></u></i> at the <b><a href="https://www.padangecosystem.com/en/page/hpcic-2022-en">High-Performance Computing Innovation Challenge (HPCIC)</a></b> organized by <b>National Supercomputing Center (NSCC)</b></p>
+            </div>
+            <br></br>
+
+            <h3><i>How to accelerate the transition to carbon-absorbing structures?</h3></i>
+
+            <p>The project, developed by the DBF R&D Team in collaboration with Karamba 3D, was created for the High-Performance Computing Innovation Challenge for the Environment organized by National Supercomputing Center (NSCC). Our value proposition was <i>Synthetic Data for the Building Industry</i>, which aims to address the time-intensive nature of structural design in the building industry.</p>
+
+            <p>As a finalist in the <i>HPCIC</i>, our team was given the opportunity to use the <i>Aspire 1</i> supercomputer at the 
+              NSCC Singapore for two months starting in August 2022. During this time, we worked closely with Karamba3D 
+              and industry experts to develop a synthetic data generation pipeline that could be used to 
+              facilitate the adoption of more sustainable building materials and reimagine early-stage building design. We 
+              explored new workflows and utilized advanced technology to create an automated pipeline for generating synthetic data.</p> 
+            <div height="0" width="100%" style="position: relative; padding-bottom: 54.57%">
+              <iframe width="100%" height="100%" style="top: 0; left: 0; position: absolute" src="https://www.youtube.com/embed/OuJpxm0P7EU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+
+              <br></br>
+
+<h3>Project Focus 🧿</h3>
+<p>In the early design stages, strict deadlines often lead engineers to rely on familiar, but potentially environmentally harmful, materials like steel and concrete. Our goal was to facilitate the adoption of more sustainable materials like mass timber by reimagining the early-stage structural design process. To achieve this, we have developed a novel data-driven process that uses synthetic data generation and machine learning predictions to inform the creation of a user-friendly design tool. This tool allows project stakeholders to easily generate and compare various structural design options and scenarios in terms of cost, embodied carbon, and sequestered carbon.</p>
+
+<div class="post-img-wrapper">
+    <div class="post-full-img-subwrapper">
+      <img class="post-full-img" src="../assets/img/workflow_supercomps.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">An overview of the novel data-driven structural design process which leverages synthetic data generation, and machine learning</a></b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h3>Methodology 📝</h3>
+<p>Our data-driven tool combines four features to address the limitations of existing solutions: 
+  [1] The first feature is user inputs, which include building massing, orthogonal column spans, and structural type. 
+  [2] The second feature is a machine learning (ML) model that uses an automated data-generation process to combine different structural grids, materials, and floor systems for various building massings to create an ML dataset that relates structural inputs to the weight of the frame
+  [3] The third feature is the estimation of cost, embodied carbon, and sequestered carbon, which are calculated using the structural properties predicted by the ML pipeline.
+  [4] The fourth feature is design space exploration, which allows the user to see the impact of each input on design criteria by changing the inputs. 
+This tool allows us to quickly generate and compare various structural design options and scenarios in terms of cost, embodied carbon, and sequestered carbon.</p>
+
+      
+      <h4>Massing Generation</h4>
+<p>We developed a robust generative design algorithm internally at DBF to generate massing solutions. 
+  These solutions were then stored in the <b><i>AWS Cloud</b></i> using a <b><i>Rest-API</b></i>. We used JSON files to store the generated solutions in an <b><i>AWS S3 bucket</b></i> and 
+  collected references to these solutions in a cloud-based database. The process of automating the synthetic data generation, indexing, 
+  and storing these solutions on the cloud was decoupled from the DBF platform and made available directly through an API. This allows for
+   efficient and convenient access to the generated data.</p>
+
+   <div class="post-img-wrapper">
+    <div class="post-full-img-subwrapper">
+      <img class="post-full-img" src="../assets/img/workflow_massing.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">3 steps of the synthetic data generation pipeline 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4>Structural Generation</h4>
+<p>We used massing generated by a volume generation algorithm as input for structural system generation. This massing provided information such as the total volume of the building, floor areas and shapes, number of floors, and inter-storey height. We then automatically generated the structural system, which includes beams, columns, slabs, cores, and a lateral load-resisting system (LLRS) using JS code based on two orthogonal spans (ranging from 3 to 10 meters) and the chosen structural type. For our initial experiment, we used 12 massing designs as a basis and generated structures with 64 different span combinations and 8 different numbers of floors for each massing.</p>
+
+<p>This resulted in a total of 512 structural designs for each massing and 6144 structural solutions for each structural type, for a total of 24,576 generated structures. We used Karamba3D software to analyze all of these buildings and construct a dataset for machine learning training.</p>
+
+<h4>FEA Analysis and Synthetic Data</h4>
+<p>We used Karamba3D parametric finite element analysis software to analyze the generated structures with fixed applied loads including gravity (slab weight + 1 kN/m2 dead load + 4 kN/m2 live load) and wind based on the maximum wind speed in Vienna, Austria. In addition to structural analysis, Karamba3D also performed structural design by optimizing the cross-sections of the beams, columns, and lateral load-resisting system (LLRS) elements. The optimized structures were then designed using the cross-sections and material grades. The weight of the optimized structure was calculated for each generated structural system to create a dataset for machine learning model training.</p>
+
+<h4>Machine Learning</h4>
+<p>We trained four machine learning models using tree-based algorithms on a dataset of structural weights, with the inputs being geometric and structural features. We split the data into a training set and a testing set, using a 80/20 ratio and used the average percentage error as the error metric to compare the performance of the models. The model that performed the best was <i><b>XGBoost</i></b>, with an average percentage error of <i><b>1.36</i></b>. The purpose of training these models was to quickly estimate the weight of a structure based on the massing, spans, and structural type, and to approximate the results of simulation-based finite element analysis.</p>
+
+<h3>Web Deployment (MLOps) 💻</h3>
+
+<p>The result of quick cost, sequestered carbon, and embodied carbon estimation of structural system given spans, generic cost of materials 
+  and labor (taken from various European companies for the year 2020), and CO2e coefficients taken from the 
+  <b>ICE database</b> for <i>A1-A3 LCA boundary</i>. The results are presented for a composite steel concrete 
+  frame with 10m by 10m spans. The user can change the input value according to their preferences and data.</p>
+  
+  <div class="post-img-wrapper">
+    <div class="post-full-img-subwrapper">
+      <img class="post-full-img" src="../assets/img/structural_UI.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">The UI for the web based structural analysis tool integrated into DBF
+        </div>
+      </div>
+    </div>
+  </div>
+  <p>The score is calculated relative to other solutions presented. All the presented structural options are ranked in cost, sequestered carbon, and embodied carbon separately, giving a higher rank to solutions with lower values. Then, the score for each criterion is calculated having a range from 100% for the bests structural option solution to 0% for the worst one. The final score is obtained by calculating an average between all 3 design criteria considered. All the metrics are weighted equally to calculate the score, but the user can manually change it at the bottom of the solution card.</p>
+
+
+  <div class="post-img-wrapper">
+    <div class="post-lg-img-subwrapper">
+      <img class="post-lg-img" style="margin: 0 auto; max-height: 400px; width: auto; max-width: 100%" src="../assets/img/env_params.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">
+          The environmental parameters in form of user inputs
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <h3>Next Steps 💡</h3>
+    <p>We are currently working on expanding the capabilities of the tool by generating more synthetic data with the use of a supercomputer and integrating Environmental Product Declarations (EPDs) into embodied carbon calculations.</p>
+    
+    <div class="post-img-wrapper">
+      <div class="post-lg-img-subwrapper">
+        <img class="post-lg-img" style="margin: 0 auto; max-height: 400px; width: auto; max-width: 100%" src="../assets/img/epd.png">
+        <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+          <div class="img-caption">
+            In the future, users can access the relevant EPD information based on the chosen construction material and country.
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+<footer class="footer"> 
+  <p class="footer__title">Rutvik Deshpande</p>
+  <div class="footer__social">
+    <a href="https://www.linkedin.com/in/rutvik-deshpande-11134719b/" class="footer__icon"><i class='bx bxl-linkedin' ></i></a>
+    <a href="https://medium.com/@rutvik.desh" class="footer__icon"><i class='bx bxl-medium' ></i></a>
+    <a href="https://twitter.com/rutvik_desh" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
+    <a href="https://github.com/rutvik-deshpande" class="footer__icon"><i class='bx bxl-github' ></i></a>
+    <a href="mailto: rutvik.deshpande@outlook.com" class="footer__icon"><i class='bx bx-envelope' ></i></a>
+    
+</div>
+</footer>
+
+</body>
+
+</html>
