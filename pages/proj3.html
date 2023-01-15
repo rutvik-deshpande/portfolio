@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="/assets/css/styles.css">
+        <link rel="stylesheet" href="../assets/css/styles.css">
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
         <title>Rutvik Deshpande</title>
     </head>
@@ -17,7 +18,7 @@
         </div>
         <div id="post-meta">
             <div id="post-title">
-                Semantic AI for Urban Design
+              ML for CFD
             </div>
     </nav>
 </header>
@@ -26,7 +27,7 @@
 
     <section class="post-hero">
         <div class="hero-img">
-            <img src="/assets/img/11.png">
+            <img src="../assets/img/header_cfd.png">
         </div>
     </section>
 
@@ -35,101 +36,143 @@
         <div class="post-content">
             <a class="card-tag">DBF R&D</a>
 
-            <div id="box1">
-              <p>📄 Read more about the project in the paper published at the CAADRIA 22 conference, <i><b><a href="http://papers.cumincad.org/data/works/att/caadria2022_152.pdf">here</a></b></i></p>
-            </div>
+            <p>The numerical simulation of fluid flows, also referred to as Computational Fluid Dynamics (CFD), has immense opportunities. We proposed new framework involving synthetic data and machine learning algorithms for predicting air flows around structures as an alternative to complex, simulation-based CFD analysis.</p>
 
-            <p>Simulations are the go-to solution for building performance analysis, but there are many problems associated with that, namely domain-level understanding of the simulation mathematical models, tremendous computational resources and these are extremely time-intensive. This conflicts with the early-stage design process, where designers perform several rounds of design iteration and refinement.</p>
+              <p>A simple CFD simulation requires a 3D mockup, a meshing pattern, simulation parameters, and execution. The time required for preparation, processing, and post-processing increases exponentially with model complexity. The project significantly contributes to the recognition and acceleration of high-fidelity fluid analysis using machine learning in multiple steps.</p>
 
 <h3>Project Focus 🧿</h3>
-<ol type="1">
-<li>One click daylight analysis with <b><i>Synthetic Machine Learning</i></b>, for faster and more interpretable results</li>
-<li>Automatic and distributed data generation using parametric scripts, simulation tools and GPU based render farms</li>
-<li>Developement of a web service to perform daylight analysis, with realtime & informed design recommendations</li></ol>
+<p>We explored the use of synthetic data for machine learning models like pix2pix and 3D CNN to predict wind speed and direction along with air pressure. Through the use of three-dimensional CFD analysis, our team verifies wind air movement at multiple heights rather than simply ground level, which will suggest the location of various architectural features such as voids, openings, balconies, and windows. We used this methodology to allow designers to iterate and quickly rank different design options, by providing an interactive and real-time system for visualising CFD predictions.</p>
 
 <div class="post-img-wrapper">
     <div class="post-full-img-subwrapper">
-      <img class="post-full-img" src="/assets/img/daylighting.png">
+      <img class="post-full-img" src="../assets/img/fig1.png">
       <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
-        <div class="img-caption">An overview of Synthetic Machine Learning system and summary of applied technologies</a></b>
+        <div class="img-caption">Visualisation of wind speed and air pressure prediction at neighbourhood scale using 3D CNN</a></b>
         </div>
       </div>
     </div>
   </div>
 
-<h3>Overview 🔭</h3>
-<p>We developed a system, <b><i>Synthetic Machine Learning</i></b>, to predict daylight simulation results in realtime. The system consists of four parts: <br>[1] a parametric model; generating synthetic data based on environmental simulation<br>[2]
-    a ML model, trained on the generated synthetic data, to predict building DA and sDA<br>[3] a web service containing a pre-trained ML model<br>[4] a web-based user interface that allows the interaction with the ML mechanics.</p>
+<h3>Data Generation ⏩</h3>
+<p>We used 2 approaches to generate synthetic data and then compared which workflow was better. The synthetic data was generated parametrically using visual programming languages like Rhino3D-Grasshopper®.</p>
+
+<h4>Numeric Data</h4>
+
+<p>The data generation setup consisted of parametric model defined in Rhino3D environment. The Grasshopper-based plugin, Elk, was used to get the 3d building data of a selected area from OpenStreetMap.org, a crowdsourced website mapping data. The model for simulation was defined by the 2 main parameters:<br>
+  [1] Module area, the 100m x100m x100m module was specified as the maximum area to be analyzed<br>
+  [2] The module rotation which will be used later to generate multiple data related to the wind direction for the module.</p>
 
     <div class="post-img-wrapper">
         <div class="post-full-img-subwrapper">
-          <img class="post-full-img" src="/assets/img/day-light.png">
+          <img class="post-full-img" src="../assets/img/diagram_1-01.png">
           <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
-            <div class="img-caption">The framework of Synthetic Machine Learning system for DA and sDA prediction
+            <div class="img-caption">Data generation process through parametricism in a visual programming environment
             </div>
           </div>
         </div>
       </div>
 
-      
-<h3>Data Generation ⏩</h3>
-<p>We developed the automatic sythetic data generation pipeline, with help of Rhino 6, Grasshopper3D and LadyBug tools. 
-  The parametric model automated the generation of dynamic daylight simulations data for different locations and design configurations. 
-  To cut the simulation time, we used <a href="https://nljones.github.io/Accelerad/">Accelerad</a>, a daylighting simulation package that makes use of GPU-compute architecture to accelerate simulation time</p>
+
+<p>The data generation process for CFD was undertaken using the Butterfly add-on that integrates the most recognized open-source CFD solver, OpenFOAM® into Grasshopper plugin. Later, this generated data will be used to create a model dataset for machine learning. Because of the very computationally expensive simulation, specific settings were chosen in order to minimize the time for running a single simulation. A 4-meter grid was introduced in the module which created 15,625 grid points/ probes in total or 25 points in x, y, and z directions respectively and max iterations for Butterfly was set to 1000. There were 2 data for machine learning, input and output data. In this process, we used intersection data between the building and the grid, wind direction, and wind speed for input data; the wind vector, wind speed, and wind pressure for the output data. Lastly, that data was saved in .json format for further usage.</p>
+
+<div class="post-img-wrapper">
+  <div class="post-full-img-subwrapper">
+    <img class="post-full-img" src="../assets/img/cfd_data_1.gif">
+    <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+      <div class="img-caption">Parametric script for automatic synthetic CFD data generation
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h4>Image Data</h4>
+<p>In the the Rhino3D environment, multiple typologies of building footprints were created using a pseudo-random random generative design algorithm. The random typology shapes consist of several common types of footprint such as C, U, L, H, T, I, and rectangular shape footprint. The data generation process for CFD was undertaken using the Butterfly add-on that integrates the most recognized open-source CFD solver, OpenFOAM® to create the required set of images.</p>
+
+<div class="post-img-wrapper">
+  <div class="post-full-img-subwrapper">
+    <img class="post-full-img" src="../assets/img/cfd_data.gif">
+    <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+      <div class="img-caption">Parametric script for CFD data generation inform of images 
+      </div>
+    </div>
+  </div>
+</div>
 
 <h3>Model Training 📈</h3>
-<p>For model training, 3 different ML model were tested, Linear Regression, Random Forest Regression, and Artificial Neural Networks (ANN). 
-  ANNs were chosen because of its accuracy and performance with outliers. The data was trained using Tensorflow with optimized parameter tuning. 
-  The input parameters for model training included Windo-Wall-Ratio for each elevation, height, width, length of rotation of the spatial module, 
-  latitude and longitude of the city. The data was trained with 6 to 10 Neural Network layers with 100.000+ total trainable parameters. 
-  We achieved a training loss of Mean Absolute Error 
-  (MAE) of 0.009 and Mean Squared Error (MSE) of 0.0002. The performance kept on improving with more diverse data.</p>
+<h4>3D ConvNet (CNN)</h4>
+<p>For the numeric data we used 3D CNN as the machine learning algorithm. A 3D CNN uses a 3-dimensional filter to perform convolutions. The 4-dimensional data required for the training consisted of the 3D grid of size 100x100x100 meters and the presence of building (0,1). Along with this 'windspeed' and 'intersection' were also used as feature variables and the output consisted of 3-dimensional grid with 'pressure' and 'vector lengths'.</p>
 
-<h3>Web Deployment (MLOps) 💻</h3>
-<p>The deployment was the most challenging step, as we had no knowledge on how to connect the ML models to front-end. 
-  The model was first tested in Rhino3D Environment with the help of <a href="https://developer.rhino3d.com/guides/compute/hops-component/">Hops component</a>. After testing various workflows, 
-  cloud computing service, Google Cloud was used for deployment. The ML models were converted to cloud functions and 
-  directly connected to the DBF platform through API.</p>
 
-<h3>UI/UX 🖊️</h3>
-<p>The user interface was designed to be as simple and intuitive as possible. The user can perform analysis on the buildings generated by the DBF platform. The prediction is presented as a clear 3D visualization and contains information on building energy efficiency. The colour-coded report presents the estimated DA and sDA values, for selected WWR ratios for each facade of the 3D building.</p>
+<h4>Pix2Pix</h4>
+<p>For the image-based approach, the ML model used was, Pix2Pix, a Conditional Generative Adversarial Network (cGAN), that focuses on image-to-image translation. A set of images encoding CFD simulation were used as an input for the ML model, which encoded its prediction as another image. During training, the ML model used a set of black & white building sections at a specific height as an input. The output image is the resulting image of colored CFD analysis. The input and output resolution of images was set to 512x512 pixels initially and 256x256 pixels for the final model was selected. Python was used for data preparation, and training the model using one of the most widely used machine learning frameworks, Tensorflow®.</p>
+
+
+<div class="post-img-wrapper">
+  <div class="post-full-img-subwrapper">
+    <img class="post-full-img" src="../assets/img/pix2pix_architecture.png">
+    <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+      <div class="img-caption">Data flow of the image-to-image translation neural network</a></b>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<h3>Visualization 🖊️</h3>
 
 <div class="post-img-wrapper">
     <div class="post-full-img-subwrapper">
-      <img class="post-full-img" src="/assets/img/ui-daylighting.png">
+      <img class="post-full-img" src="../assets/img/cfd_1.png">
       <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
-        <div class="img-caption">DBF building DA prediction system is based on ML and dramatically reduces daylight analysis time compared to traditional simulation-based approaches.
+        <div class="img-caption">The user interface for visualising Air pressure (Pa) on the facades on building blocks
         </div>
       </div>
     </div>
   </div>
 
-  <h3>Next Steps 💡</h3>
-    <p>In this project, we used tabular data and predicted values, but we expanded it further and experimented with 2D generation of daylight simulation results as heatmaps using 2D CNN algorithm. This method can help in predicting more granular daylight results. It was deployed to predict Daylight Autonomy and Spatial Daylight Autonomy, based on size of room and window-wall ratios.</p>
-    
-    <div class="post-img-wrapper">
-      <div class="post-full-img-subwrapper">
-        <img class="post-full-img" src="/assets/img/da.gif">
-        <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
-          <div class="img-caption">Predicting the DA based on input parameters. The resulting heatmap has values varying from 0-100%.
-          </div>
+  <div class="post-img-wrapper">
+    <div class="post-full-img-subwrapper">
+      <img class="post-full-img" src="../assets/img/cfd_2.png">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">The user interface for evaluating the design possibilities by visualizing realtime 3D wind speed (mph) in web based platform Digital Blue Foam (DBF)
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="post-img-wrapper">
-      <div class="post-full-img-subwrapper">
-        <img class="post-full-img" src="/assets/img/sda.gif">
-        <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
-          <div class="img-caption">Predicting the sDA based on input parameters. The results of sDA are easier to interpret, as there are only two values, pass or fail.
-          </div>
+  <div class="post-img-wrapper">
+    <div class="post-lg-img-subwrapper">
+      <img class="post-lg-img" style="margin: 0 auto; max-height: 400px; width: auto; max-width: 100%" src="../assets/img/cfd_3.gif">
+      <div class="img-caption-wrapper" style="display: flex; align-items: flex-end">
+        <div class="img-caption">
+          An interactive web-based application was developed, where users can draw building footprints on the canvas and generate the CFD results for the same within seconds. This was developed with the help of P5 JS and Tensorflow JS. (Note: The prevalent wind direction is from the South and the location is New York City; This model was trained for ground level)
         </div>
       </div>
     </div>
+  </div>
+
+  <h3>Impact ✨</h3>
+    <p>This project aims to identify areas where Machine Learning can outperform traditional methods in predicting airflow around buildings with an acceptable compromise on accuracy but reduced setup and computation time. We also focus on highlighting optimal methods for generating realistic training data through model simplification, enhancing the CFD ML model's training efficiency and prediction accuracy through constraints and assumptions. Finally, we provide an intuitive design tool for fast 3D airflow prediction for building design, which allows for an interactive and real-time system for visualizing CFD predictions, enabling designers to quickly iterate and rank different design options. This methodology significantly contributes to the recognition and acceleration of high-fidelity fluid analysis using Synthetic Machine Learning (SML) framework.</p>
+    
+
 
 
 </div>
 
+
+</section>
+<footer class="footer"> 
+  <p class="footer__title">Rutvik Deshpande</p>
+  <div class="footer__social">
+    <a href="https://www.linkedin.com/in/rutvik-deshpande-11134719b/" class="footer__icon"><i class='bx bxl-linkedin' ></i></a>
+    <a href="https://medium.com/@rutvik.desh" class="footer__icon"><i class='bx bxl-medium' ></i></a>
+    <a href="https://twitter.com/rutvik_desh" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
+    <a href="https://github.com/rutvik-deshpande" class="footer__icon"><i class='bx bxl-github' ></i></a>
+    <a href="mailto: rutvik.deshpande@outlook.com" class="footer__icon"><i class='bx bx-envelope' ></i></a>
+    
+</div>
+</footer>
 
 </body>
 
